@@ -1,5 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import BookingSlice from "./features/BookingSlice";
 
 export default configureStore({
-  reducer: {},
+  reducer: {
+    reservation: BookingSlice,
+  },
 });
