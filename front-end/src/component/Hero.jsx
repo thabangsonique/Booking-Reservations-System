@@ -1,34 +1,39 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
     <div className="relative bg-tertiary">
-      <div className=" pl-36 grid xl:grid-cols-2 ">
+      <div className=" xl:pl-36 md:pl-[102px] grid md:grid-cols-2 md:gap-10 ">
         {/* left-side */}
-        <div className="mt-34.5 z-10">
+        <div className="text-center md:text-start mt-34.5 z-10">
           <span className="uppercase text-secondary text-[14px] font-semibold">
             {" "}
             est. 1994 - paris
           </span>
 
-          <h1 className="text-[80px]">L'Essence Gastronomy</h1>
-          <p className="font-regular text-[18px] w-[450px]">
-            Where heritage meets contemporary culinary artistry. Experience a
-            journey of intentional flavors served in an atmosphere of hushed,
-            intimate luxury.
+          <h1 className="text-4xl md:text-[80px]">
+            L'Essence <br />
+            Gastronomy
+          </h1>
+          <p className="mx-auto md:mx-0 font-regular mt-8 md:mt-0 text-sm md:text-[18px] md:w-[450px] w-[200px]">
+            Where heritage meets contemporary culinary artistry.
           </p>
 
           {/* cta-buttons */}
           <div className="mt-[48px]">
-            <button className="primary-btn text-white btn-hover">
-              Book a table
-            </button>
+            <Link to="/reservation">
+              {" "}
+              <button className="primary-btn text-white btn-hover">
+                Book a table
+              </button>
+            </Link>
           </div>
         </div>
 
         {/* right side image */}
-        <div>
-          <img src="/hero.png" alt="" className="w-full" />
+        <div className="md:mt-30 xl:mt-0 hidden md:block">
+          <img src="/hero.png" alt="" className="xl:w-full md:w-[500px]" />
         </div>
       </div>
 

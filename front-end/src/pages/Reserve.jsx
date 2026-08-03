@@ -18,6 +18,7 @@ import {
   useGetTimeSlotsQuery,
   useCreateReservationMutation,
 } from "../features/api";
+import ExistingReservations from "../component/ExistingReservations";
 
 const tables = [
   "Table 1",
@@ -108,8 +109,8 @@ export default function Reserve() {
       {/* contents */}
       <div className="px-24 pb-11.5 ">
         {/* heading text */}
-        <div className="text-center mx-auto mt-11.5  w-[651px]">
-          <h1 className="text-[48px]">Secure Your Experience</h1>
+        <div className="text-center md:mx-auto mt-11.5  md:w-[651px]">
+          <h1 className="md:text-[48px] text-3xl">Secure Your Experience</h1>
           <p className="mt-4 font-manrope">
             Select your preferred dining environment, date, and time. Each table
             at L'Essence offers a unique perspective of our culinary artistry.
@@ -117,19 +118,21 @@ export default function Reserve() {
         </div>
 
         {/* VIEW ALL RESERVATIONS */}
-        <div></div>
+        <div>
+          <ExistingReservations reservation={reservation} dispatch={dispatch} />
+        </div>
 
         {/* table + reservation details */}
-        <div className="grid xl: grid-cols-2 gap-20 mt-[64px]">
+        <div className="grid xl:grid-cols-2 gap-20 mt-[64px]">
           {/* left-side */}
           <div>
             <h3 className="text-[24px] font-regular">1. Select Your Table</h3>
 
             {/* choose table section */}
-            <div className="rounded-xl bg-gray-400/30 mt-5 border border-secondary">
+            <div className="rounded-xl py-10 md:py-0 px-10 md:px-10 w-[400px] md:w-[600px] bg-gray-400/30 mt-5 border border-secondary -mx-20 md:mx-0">
               {/* table selection */}
-              <div className="px-20 py-10">
-                <div className="grid grid-cols-3 gap-20 mt-20">
+              <div className="xl:px-20 xl:py-10 md:px-10 md:py-5 ">
+                <div className="grid grid-cols-2 gap-5 md:grid-cols-3 xl:gap-10 md:gap-10 xl:mt-20 md:mt-5">
                   {tables.map((table, idx) => (
                     <button
                       onClick={() => {
@@ -138,7 +141,7 @@ export default function Reserve() {
                         dispatch(updateReservation({ resource: table }));
                       }}
                       key={idx}
-                      className={`rounded-full btn-hover text-black py-5 px-5 transition-all duration-300 ${isSelected === table ? "bg-primary text-white" : "border border-secondary"}`}
+                      className={`rounded-full btn-hover text-black py-2 px- md:py-5 md:px-5 transition-all duration-300 ${isSelected === table ? "bg-primary text-white" : "border border-secondary"}`}
                     >
                       {table}
                     </button>
@@ -146,7 +149,7 @@ export default function Reserve() {
                 </div>
 
                 {/* table availability */}
-                <div className="flex gap-10 mt-[110px]">
+                <div className="flex gap-10 mt-10 xl:mt-[110px] md:mt-10">
                   <div className="flex space-x-3">
                     <div className="bg-primary h-5 w-5 rounded" />
                     <p className="font-manrope">Selected</p>
@@ -160,7 +163,7 @@ export default function Reserve() {
             </div>
 
             {/* date selection */}
-            <div className="mt-12">
+            <div className="mt-12 -ml-15 md:ml-0">
               <h3 className="text-[24px] font-regular">2. Select Date</h3>
               {/* calendar */}
               <div className="mt-10 bg-gray-400/10 p-8 rounded-xl border border-secondary">
@@ -197,7 +200,7 @@ export default function Reserve() {
 
           {/* RESERVATION DETAILS */}
           {/* right-side */}
-          <div className="bg-gray-400/30 rounded-xl p-[32px] border border-secondary">
+          <div className="bg-gray-400/30 rounded-xl p-[32px] border border-secondary -ml-15 md:ml-0">
             <h3 className="text-[24px] font-regular">Reservation Details</h3>
 
             {/* timeslots */}

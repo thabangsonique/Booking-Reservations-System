@@ -15,7 +15,7 @@ export default function About() {
           </p>
         </div>
         {/* right-image */}
-        <div className="relative  h-80 w-300">
+        <div className="relative hidden md:block h-80 w-300">
           <img
             src="/dining.png"
             alt=""
@@ -43,7 +43,7 @@ export default function About() {
           </p>
         </div>
         {/* right */}
-        <div>
+        <div className="hidden md:block">
           <img
             src="/wine.png"
             alt="wine storage"

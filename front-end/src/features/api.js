@@ -24,7 +24,7 @@ export const api = createApi({
     //get reservations.
     getReservations: build.query({
       query: ({ resource, date }) =>
-        `/bookings?resource=${resource}&date=${date}`,
+        `/api/bookings/${date}/${encodeURIComponent(resource)}`,
       providesTags: ["Reservations"],
     }),
 
@@ -40,4 +40,8 @@ export const api = createApi({
   }),
 });
 
-export const { useGetTimeSlotsQuery, useCreateReservationMutation } = api;
+export const {
+  useGetTimeSlotsQuery,
+  useCreateReservationMutation,
+  useGetReservationsQuery,
+} = api;
