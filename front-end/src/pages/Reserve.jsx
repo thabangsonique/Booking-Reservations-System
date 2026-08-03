@@ -19,6 +19,7 @@ import {
   useCreateReservationMutation,
 } from "../features/api";
 import ExistingReservations from "../component/ExistingReservations";
+import { useEffect } from "react";
 
 const tables = [
   "Table 1",
@@ -56,7 +57,10 @@ export default function Reserve() {
   //fetch the available timeslots form the backend.
   //grab data from the state
   const reservation = useSelector((state) => state.reservation);
-  console.log("Reservation state:", reservation);
+
+  useEffect(() => {
+    localStorage.setItem("reservation", JSON.stringify(reservation));
+  }, [reservation]);
   //use data to fetch backend slots withn api.
   const {
     data: availableSlots = [],

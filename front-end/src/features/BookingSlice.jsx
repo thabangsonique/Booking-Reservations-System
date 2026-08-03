@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  name: "",
-  email: "",
-  resource: "",
-  date: "",
-  time: "", //user selected
-  isModalOpen: false,
-};
+const savedReservation = localStorage.getItem("reservation");
+const initialState = savedReservation
+  ? JSON.parse(savedReservation)
+  : {
+      resource: null,
+      date: null,
+      time: null,
+      name: "",
+      email: "",
+      isModalOpen: false,
+    };
 
 const reservationSlice = createSlice({
   name: "reservation",
