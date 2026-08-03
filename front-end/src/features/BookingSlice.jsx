@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { redirect } from "react-router-dom";
 
 const initialState = {
   name: "",
   email: "",
   resource: "",
   date: "",
-  time: "", //retrieved from the backend
+  time: "", //user selected
   isModalOpen: false,
 };
 
@@ -16,14 +15,14 @@ const reservationSlice = createSlice({
   reducers: {
     //set update state  for booking details.
     updateReservation(state, action) {
-      object.assign(state, action.payload);
+      Object.assign(state, action.payload);
     },
     //open the modal form.
-    modalOpen(state, action) {
+    modalOpen(state) {
       state.isModalOpen = true;
     },
     //close the modal form.
-    modalClose(state, action) {
+    modalClose(state) {
       state.isModalOpen = false;
     },
     //upon submition reset the reservation

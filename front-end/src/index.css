@@ -39,6 +39,15 @@ body {
   @apply hover:scale-110 hover:shadow-2xl hover:cursor-pointer transition-all duration-300;
 }
 
+.modal-scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.modal-scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
 /* animations */
 @keyframes float {
   0%,
