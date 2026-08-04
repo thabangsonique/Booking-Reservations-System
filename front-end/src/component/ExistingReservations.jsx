@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
-import { useGetReservationsQuery } from "../features/api";
+import {
+  useGetReservationsQuery,
+  useDeleteReservationMutation,
+} from "../features/api";
 import { format } from "date-fns";
 
 const tables = [
@@ -15,6 +18,7 @@ const tables = [
 export default function ExistingReservations({ dispatch }) {
   const [selectedTable, setSelectedTable] = useState();
   const [selectReservedDate, setSelectReservedDate] = useState();
+  const [deleteReservation] = useDeleteReservationMutation();
   const formatedDate = selectReservedDate
     ? format(selectReservedDate, "yyyy-MM-dd")
     : "";
@@ -38,6 +42,15 @@ export default function ExistingReservations({ dispatch }) {
   );
 
   console.log("RESERVATIONS:", bookings);
+
+  // HANDLE DELET RESERVATION
+  const handleDelete = async (id) => {
+    try {
+      await deleteReservation(id).unwrap();
+    } catch (error) {
+      console.error("Failed to delete reservation:", err);
+    }
+  };
   return (
     <div className="mt-10 rounded-xl -mx-20 md:mx-0 md:w-[800px] p-5 bg-gray-400/30 border border-secondary space-y-10">
       <h1 className="text-2xl mt-8">View Your Current Reservations</h1>
@@ -80,8 +93,30 @@ export default function ExistingReservations({ dispatch }) {
       </div>
 
       {/* RESERVATIONS DISPLAY */}
+      <div>
+        {selectedTable &&
+          formatedDate &&
+          !isLoading &&
+          bookings.length === 0 && (
+            <p className="text-xl">
+              {" "}
+              No Reservations Found For The Selected Date And Table!
+            </p>
+          )}
+
+        {/* loading state */}
+        {isLoading && <p className="text-xl">Loading Reservations...</p>}
+
+        {/* errors */}
+        {error && (
+          <p className="text-red-700">
+            Failed to load reservations. Please try again!
+          </p>
+        )}
+      </div>
+
       {bookings.map((booking, idx) => (
-        <div className="text-xl mb-10">
+        <div className="text-xl mb-10 border-b border-secondary/30 pb-5">
           <h1 className="mb-3 font-bold">
             Full Name:<span className="font-light"> {booking.name}</span>
           </h1>
@@ -97,6 +132,13 @@ export default function ExistingReservations({ dispatch }) {
           <h1 className="mb-3 font-bold">
             time: <span className="font-light">{booking.time}</span>
           </h1>
+
+          <button
+            onClick={() => handleDelete(booking.id)}
+            className="primary-btn btn-hover text-white"
+          >
+            Cancel Reservation
+          </button>
         </div>
       ))}
     </div>

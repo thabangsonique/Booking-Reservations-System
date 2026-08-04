@@ -44,4 +44,5 @@ export const {
   useGetTimeSlotsQuery,
   useCreateReservationMutation,
   useGetReservationsQuery,
+  useDeleteReservationMutation,
 } = api;

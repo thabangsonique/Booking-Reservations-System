@@ -6,7 +6,6 @@ import "./index.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Reserve from "./pages/Reserve";
-import Confirmation from "./pages/Confirmation";
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reservation" element={<Reserve />} />
-        <Route path="/confirmation" element={<Confirmation />} />
       </Routes>
     </BrowserRouter>
   );
