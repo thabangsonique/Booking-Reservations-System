@@ -12,7 +12,7 @@ import {
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
-import Footer from "../component/footer";
+import Footer from "../component/Footer";
 import { id } from "date-fns/locale";
 import {
   useGetTimeSlotsQuery,
